@@ -10,6 +10,11 @@ namespace DisturbiaReinvented
     {
         static void Main(string[] args)
         {
+            SpringerProblem springer = new SpringerProblem(4);
+            springer.AusgabeGrid();
+            springer.BelegeGridFuerAnfang();
+            springer.AusgabeGrid();
+            Console.ReadLine();
         }
     }
 }
