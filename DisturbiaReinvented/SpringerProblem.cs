@@ -148,7 +148,7 @@ namespace DisturbiaReinvented
             {
                 for (int j = 0; j < sizeOfPlayground; j++)
                 {
-                    Console.Write($" { grid[i][j] } ");
+                    GebeGridInFarbeAus(i, j);
                 }
                 Console.WriteLine("");
             }
@@ -158,6 +158,34 @@ namespace DisturbiaReinvented
             }
         }
 
+        public void GebeGridInFarbeAus(int reihe, int spalte)
+        {
+            if(grid[reihe][spalte] == "K")
+            {
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write($" { grid[reihe][spalte] } ");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            else if (grid[reihe][spalte] == "x")
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write($" { grid[reihe][spalte] } ");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            else if (grid[reihe][spalte] == "#")
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write($" { grid[reihe][spalte] } ");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                Console.Write($" { grid[reihe][spalte] } ");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+
+        }
 
         public void BelegeGridFuerAnfang()
         {
