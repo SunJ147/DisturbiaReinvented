@@ -27,12 +27,14 @@ namespace DisturbiaReinvented
         {
             BelegeGridFuerAnfang();
             Startnachricht();
-            int zahl = 0;
-            while (zahl != 1)
+            int zahl = 2;           //Deckt den Anfangsfall ab (zwei mögliche Sprünge,
+                                    //für SpringerSchritt() und HoleEingabe() wichtig)
+            while (zahl != 0)
             {
                 AusgabeGrid();
-                SpringerSchritt();
-                zahl = MarkiereAlleMoeglichenSpruenge();
+                string sprung = HoleEingabe(zahl);
+                SpringerSchritt(sprung);
+                zahl = MarkiereAlleMoeglichenSpruenge()-1;
             }
             bool fertig = FeldFertigAusgefuellt();
             if(!fertig)
@@ -53,10 +55,8 @@ namespace DisturbiaReinvented
                 "so zu bewegen, dass er auf jedes Feld genau einmal auftritt. Mögliche Sprünge sind durch Zahlen markiert" +
                 "Um deinen Springer zu ziehen gebe einfach die gewünschte Zahl ein und bestätige. Viel Glück!");
         }
-        public void SpringerSchritt()       //Springer springt auf eingegebenes Feld und alte Position wird markiert
+        public void SpringerSchritt(string sprung)       //Springer springt auf eingegebenes Feld und alte Position wird markiert
         {
-            Console.Write("Nächster Sprung: ");
-            string sprung = Console.ReadLine();
             for(int i = 0; i < sizeOfPlayground; i++)
             {
                 for(int j = 0; j < sizeOfPlayground; j++)
@@ -79,6 +79,33 @@ namespace DisturbiaReinvented
             }
         }
 
+        public string HoleEingabe(int anzahlMoeglicheSpruenge)
+        {
+            Console.Write("Nächster Sprung: ");
+            string sprung = Console.ReadLine();
+            int zahl = 0;
+            EingabenKontrollieren:
+            while(!int.TryParse(sprung, out zahl))
+            {
+                Console.Write("Du musst eine Ganzzahl eingeben: ");
+                sprung = Console.ReadLine();
+            }
+            while (zahl < 1 || zahl > anzahlMoeglicheSpruenge)
+            {
+                if (anzahlMoeglicheSpruenge == 1)
+                {
+                    Console.Write($"Das ist kein gültiger Sprung. In dieser Runde ist nur der Sprung auf Feld 1 möglich. Wähle erneut: ");
+                    sprung = Console.ReadLine();
+                }
+                else
+                {
+                    Console.Write($"Das ist kein gültiger Sprung. In dieser Runde sind nur Sprüngen auf die Felder 1 bis {anzahlMoeglicheSpruenge} möglich. Wähle erneut: ");
+                    sprung = Console.ReadLine();
+                }
+                goto EingabenKontrollieren;
+            }
+            return sprung;
+        }
         public int MarkiereAlleMoeglichenSpruenge()
         {
             int zahl = 1;
