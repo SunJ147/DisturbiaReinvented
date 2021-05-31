@@ -10,7 +10,7 @@ namespace DisturbiaReinvented
     {
         static void Main(string[] args)
         {
-            SpringerProblem springer = new SpringerProblem(4);
+            SpringerProblem springer = new SpringerProblem(7);
             springer.StarteSpringerProblem();
         }
     }

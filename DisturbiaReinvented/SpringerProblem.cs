@@ -52,7 +52,7 @@ namespace DisturbiaReinvented
         public void Startnachricht()
         {
             Console.WriteLine("Du musst das Springerproblem lösen! Das Ziel dabei ist, den Springer auf dem Spielfeld " +
-                "so zu bewegen, dass er auf jedes Feld genau einmal auftritt. Mögliche Sprünge sind durch Zahlen markiert" +
+                "so zu bewegen, dass er auf jedes Feld genau einmal auftritt. Mögliche Sprünge sind durch Zahlen markiert. " +
                 "Um deinen Springer zu ziehen gebe einfach die gewünschte Zahl ein und bestätige. Viel Glück!");
         }
         public void SpringerSchritt(string sprung)       //Springer springt auf eingegebenes Feld und alte Position wird markiert
